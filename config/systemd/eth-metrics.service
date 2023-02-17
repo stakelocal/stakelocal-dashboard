@@ -1,0 +1,17 @@
+[Unit]
+Description=Ethereum Metrics Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=eth-metrics
+Group=eth-metrics
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/ethereum-metrics-exporter \
+                --config /etc/eth-metrics/eth-metrics.yml \
+                --metrics-port 9095
+
+[Install]
+WantedBy=multi-user.target

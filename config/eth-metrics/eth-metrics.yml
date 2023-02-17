@@ -1,0 +1,15 @@
+consensus:
+  enabled: true
+  url: "<CONSENSUS_CLIENT_URL>"
+  name: "<CONSENSUS_CLIENT_NAME>"
+execution:
+  enabled: true
+  url: "<EXECUTION_CLIENT_URL>"
+  name: "<EXECUTION_CLIENT_NAME>"
+  modules:
+    - "eth"
+    - "net"
+    - "web3"
+    - "txpool"
+pair:
+  enabled: true

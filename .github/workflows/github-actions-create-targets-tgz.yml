@@ -1,0 +1,25 @@
+on:
+  workflow_dispatch
+  
+jobs:
+  create-tgz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./config/prometheus/files_sd/
+          files: |
+            stakelocal/
+
+          outPath: stakelocal_prometheus_targets.tgz
+      - name: Get the output
+        run: echo "The output was ${{ steps.compress.outputs.done }}"
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Generated stakelocal_prometheus_targets.tgz
